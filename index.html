@@ -20,7 +20,7 @@
     <meta id="theme-color" name="theme-color" content="#ffffff">
 
     <base target="_blank">
-
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <title>MediaStream Recording</title>
 
     <link rel="icon" sizes="192x192" href="../../../images/webrtc-icon-192x192.png">
@@ -41,7 +41,7 @@
                 title="W3C MediaStream Recording API Editor's Draft">Editor's&nbsp;Draft</a>.</p>
 
         <video id="gum" playsinline autoplay muted></video>
-        <video id="recorded" playsinline loop controls></video>
+        <video id="recorded" src="http://localhost:8181/img/315d4d2f19a8e8fa0c1e3050e07ac6be" playsinline loop controls></video>
 
         <div>
             <button id="record" disabled>Start Recording</button>

@@ -55,17 +55,35 @@ playButton.addEventListener("click", () => {
 const downloadButton = document.querySelector("button#download");
 downloadButton.addEventListener("click", () => {
   const blob = new Blob(recordedBlobs, { type: "video/webm" });
-  const url = window.URL.createObjectURL(blob);
-  const a = document.createElement("a");
-  a.style.display = "none";
-  a.href = url;
-  a.download = "test.webm";
-  document.body.appendChild(a);
-  a.click();
-  setTimeout(() => {
-    document.body.removeChild(a);
-    window.URL.revokeObjectURL(url);
-  }, 100);
+
+  const home_url = `http://localhost:8181`;
+  const url = home_url + "/api/video";
+  let formData = new FormData();
+  formData.append("video", blob);
+  axios
+    .post(url, formData, {
+      headers: {
+        "Content-Type": "multipart/form-data",
+      },
+    })
+    .then(res => {
+      console.log(res.data.videourl);
+    })
+    .catch(function() {
+      console.log("FAILURE!!");
+    });
+
+  //   const url = window.URL.createObjectURL(blob);
+  //   const a = document.createElement("a");
+  //   a.style.display = "none";
+  //   a.href = url;
+  //   a.download = "test.webm";
+  //   document.body.appendChild(a);
+  //   a.click();
+  //   setTimeout(() => {
+  //     document.body.removeChild(a);
+  //     window.URL.revokeObjectURL(url);
+  //   }, 100);
 });
 
 // window.isSecureContext could be used for Chrome
